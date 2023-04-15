@@ -21,10 +21,20 @@ if (!isset($_SESSION['loginPublisher'])) {
             display: grid;
             grid-template-columns: auto auto auto auto;
         }
+        .form-label {
+            font-weight: 500;
+            color: #dfdfdf;
+        }
+        .checkbox-grid label {
+            color: #dfdfdf;
+        }
+        .form-control {
+            background-color: whitesmoke;
+        }
     </style>
 </head>
 
-<body>
+<body class="bg-dark">
     <div class="container">
         <?php
         if (isset($_POST['submit'])) {
@@ -38,13 +48,10 @@ if (!isset($_SESSION['loginPublisher'])) {
             }
         }
         ?>
-        <div class="container">
-            <a href="film.php" class="btn btn-success m-1">Kembali</a>
-        </div>
         <div class="container w-100 h-100 p-3 d-flex justify-content-center align-items-center">
-        <div class="container-fluid w-50 p-3">
+        <div class="container-fluid w-50 px-5 py-3 rounded" style="background-color: crimson;">
             <div class="mb-3 d-flex justify-content-center">
-                <h3>Tambah Film</h3>
+                <h3 style="color: #dfdfdf;">Tambah Film</h3>
             </div>
                 <form action="" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
@@ -56,7 +63,7 @@ if (!isset($_SESSION['loginPublisher'])) {
                         <input class="form-control" type="date" name="tanggal" id="tanggal" aria-label="default input example" required>
                     </div>
                     <div class="mb-3">
-                        <label for="genre">Genre</label>
+                        <label for="genre" class="form-label">Genre</label>
                         <div class="checkbox-container">
                                 <div class="checkbox-grid">
                                     <input type="checkbox" name="genre[0]" value="Action" id="action">
@@ -100,8 +107,9 @@ if (!isset($_SESSION['loginPublisher'])) {
                         <textarea class="form-control" placeholder="Deskripsi..." id="filmDesc" name="deskripsi" style="height: 100px; resize:none;" required></textarea>
                         <label for="filmDesc">Deskripsi</label>
                     </div>
-                    <div class="mb-3">
-                        <button class="btn btn-danger mt-3" type="submit" name="submit">Tambah</button>
+                    <div class="mb-3 d-flex justify-content-between">
+                        <a href="film.php" class="btn btn-secondary mt-3">Kembali</a>
+                        <button class="btn btn-success mt-3" type="submit" name="submit">Tambah</button>
                     </div>
                 </form>
             </div>

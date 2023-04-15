@@ -68,7 +68,7 @@ require "../config.php";
                     }
                 }
             ?>
-            <div class="container w-100 h-100 p-3 d-flex justify-content-center align-items-center">
+            <div class="container bg-dark w-100 h-100 p-3 d-flex justify-content-center align-items-center">
                 <div class="container-fluid w-50 p-3">
                     <div class="mb-3 d-flex justify-content-center align-items-center">
                         <h3>Gabung Membership</h3>
