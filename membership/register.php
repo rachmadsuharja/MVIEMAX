@@ -9,7 +9,7 @@ require "../config.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MVIEMAX | Membership</title>
-    <link rel="stylesheet" href="../assets/index.css" />
+    <link rel="stylesheet" href="assets/index.css" />
     <script src="https://kit.fontawesome.com/4eb31409a6.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
@@ -39,7 +39,7 @@ require "../config.php";
                 <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     User
                 </a>
-                <ul class="dropdown-menu bg-dark">
+                <ul class="dropdown-menu dropdown-menu-dark">
                     <li><a class="dropdown-item text-white" href="../membership/register.php">Membership</a></li>
                     <li><a class="dropdown-item text-white-50" href="../publisher/register.php">Publisher</a></li>
                     <li><hr class="dropdown-divider"></li>
@@ -74,26 +74,26 @@ require "../config.php";
                         <h3>Gabung Membership</h3>
                     </div>
                     <form action="" method="POST">
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <label for="nama" class="form-label">Nama</label>
                         <input class="form-control" type="text" name="nama" id="nama" placeholder="Nama..." aria-label="default input example" autofocus required>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required>
                     </div>
                     
-                    <div class="mb-3 d-flex justify-content-between">
-                        <div class="mb-3">
+                    <div class="mb-2 d-flex justify-content-between">
+                        <div class="mb-2">
                             <label for="password" class="form-label">Password</label>
                             <input class="form-control" type="password" name="password" id="password" placeholder="Password..." aria-label="default input example" required>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-2">
                             <label for="password2" class="form-label">Konfirmasi Password</label>
                             <input class="form-control" type="password" name="password2" id="password2" placeholder="Konfirmasi password..." aria-label="default input example" required>
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <label for="gender" class="form-label">Gender</label>
                         <div class="form-control">
                             <input type="radio" name="gender" value="Laki-laki" id="laki-laki">
@@ -102,7 +102,7 @@ require "../config.php";
                             <label for="perempuan">Perempuan</label>
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <label for="role" class="form-label">Role</label>
                         <select class="form-select" name="role" id="role" aria-label="Default select example">
                             <option value="Rookie">Rookie</option>
@@ -110,9 +110,9 @@ require "../config.php";
                             <option value="Pro">Pro</option>
                         </select>
                     </div>
-                    <div class="mb-3 d-flex justify-content-between">
-                        <h6>Sudah punya akun? <a href="../user/member/login.php">Login</a></h6>
-                        <button type="submit" name="register" id="register" class="btn btn-danger">Buat Akun</button>
+                    <div class="mb-2 d-flex justify-content-between">
+                        <h6 class="mt-2">Sudah punya akun? <a class="btn btn-primary px-1 py-0" href="../user/member/login.php">Login</a></h6>
+                        <button type="submit" name="register" id="register" class="btn btn-danger mt-2 p-1">Buat Akun</button>
                     </div>
                     </form>
                 </div>

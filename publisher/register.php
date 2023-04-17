@@ -36,7 +36,7 @@ require "../config.php";
                 <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     User
                 </a>
-                <ul class="dropdown-menu bg-dark">
+                <ul class="dropdown-menu dropdown-menu-dark">
                     <li><a class="dropdown-item text-white-50" href="../membership/register.php">Membership</a></li>
                     <li><a class="dropdown-item text-white" href="../publisher/register.php">Publisher</a></li>
                     <li><hr class="dropdown-divider"></li>
@@ -50,7 +50,7 @@ require "../config.php";
             </div>
         </div>
         </nav>
-        <div class="gap mt-b">.</div>
+        <div class="gap mt-2">.</div>
         <div id="publisher" class="publisher mt-5">
             <div class="container bg-danger text-white p-3">
             <?php
@@ -96,7 +96,7 @@ require "../config.php";
                         </div>
                     </div>
                     <div class="mb-3 d-flex justify-content-between">
-                        <p>Sudah punya akun? <a href="../user/publisher/login.php">Login</a></p>
+                    <h6 class="mt-2">Sudah punya akun? <a class="btn btn-primary px-1 py-0" href="../user/publisher/login.php">Login</a></h6>
                         <button type="submit" name="register" id="register" class="btn btn-danger">Buat Akun</button>
                     </div>
                     </form>

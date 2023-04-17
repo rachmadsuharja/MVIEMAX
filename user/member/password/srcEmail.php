@@ -62,6 +62,18 @@
             white-space: nowrap;
             -webkit-overflow-scrolling: touch;
         }
+        .form-floating>.form-control-plaintext~label::after,
+        .form-floating>.form-control:focus~label::after,
+        .form-floating>.form-control:not(:placeholder-shown)~label::after,
+        .form-floating>.form-select~label::after {
+            position: absolute;
+            inset: 1rem 0.375rem;
+            z-index: -1;
+            height: 1.5em;
+            content: "";
+            background-color: #FFFDD0;
+            border-radius: var(--bs-border-radius);
+        }
     </style>
     <!-- Custom styles for this template -->
     <link href="../../../assets/signin.css" rel="stylesheet">

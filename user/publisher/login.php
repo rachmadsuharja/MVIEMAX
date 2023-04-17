@@ -11,6 +11,7 @@ if (isset($_POST['loginPublisher'])) {
     $result = mysqli_query($con, "SELECT * FROM film_publisher WHERE username = '$username'");
     if (mysqli_num_rows($result) === 1) {
         $row = mysqli_fetch_assoc($result);
+        $username = $row['username'];
         if (password_verify($password, $row['password'])) {
             $_SESSION['loginPublisher'] = true;
             header("Location:dashboard.php");
@@ -84,6 +85,18 @@ if (isset($_POST['loginPublisher'])) {
             white-space: nowrap;
             -webkit-overflow-scrolling: touch;
         }
+        .form-floating>.form-control-plaintext~label::after,
+        .form-floating>.form-control:focus~label::after,
+        .form-floating>.form-control:not(:placeholder-shown)~label::after,
+        .form-floating>.form-select~label::after {
+            position: absolute;
+            inset: 1rem 0.375rem;
+            z-index: -1;
+            height: 1.5em;
+            content: "";
+            background-color: #FFFDD0;
+            border-radius: var(--bs-border-radius);
+        }
     </style>
 </head>
 
@@ -107,9 +120,9 @@ if (isset($_POST['loginPublisher'])) {
                     <label for="password">Password</label>
                 </div>
                 <button class="w-100 mb-3 btn btn-lg text-dark" name="loginPublisher" id="submit" type="submit" style="background-color:#FFAC42">Login</button>
-                <a class="d-flex justify-content-center mb-3 p-1 w-25 btn btn-secondary" href="password/srcUser.php">Lupa Password?</a>
+                <a class="d-flex justify-content-center mb-3 w-25 p-2 btn btn-dark" href="password/srcUser.php">Lupa Password?</a>
                 <div class="container mt-3 mb-5 p-0">
-                <p class="text-white">Belum punya akun? <a class="mt-2 mb-2 p-1 btn btn-secondary" href="../../publisher/register.php">buat akun</a></p>
+                <p class="text-white">Belum punya akun? <a class="mt-2 mb-2 p-2 btn btn-dark" href="../../publisher/register.php">buat akun</a></p>
                 </div>
             </form>
         </main>

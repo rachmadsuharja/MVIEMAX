@@ -8,9 +8,18 @@ require_once "config.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feedback</title>
+    <link rel="stylesheet" href="assets/index.css" />
     <script src="https://kit.fontawesome.com/4eb31409a6.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        a {
+            font-size: 1em;
+        }
+    </style>
 </head>
 <body class="bg-dark">
     <nav class="navbar navbar-expand-lg bg-dark text-white position-fixed top-0 w-100">
@@ -30,7 +39,7 @@ require_once "config.php";
                 <a class="nav-link dropdown-toggle text-white-50" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     User
                 </a>
-                <ul class="dropdown-menu bg-dark">
+                <ul class="dropdown-menu dropdown-menu-dark">
                     <li><a class="dropdown-item text-white-50" href="membership/register.php">Membership</a></li>
                     <li><a class="dropdown-item text-white-50" href="publisher/register.php">Publisher</a></li>
                     <li><hr class="dropdown-divider"></li>

@@ -5,7 +5,19 @@ if (!isset($_SESSION['loginAdmin'])) {
     header("Location: login.php");
     exit;
 }
-$user = "SELECT username FROM administrator";
+$q = "SELECT username FROM administrator WHERE id = 3";
+$user = mysqli_query($con, $q);
+$user = mysqli_fetch_assoc($user);
+
+//tabel & data
+$mq = mysqli_query($con, "SELECT * FROM membership_user");
+$member = mysqli_num_rows($mq);
+$pq = mysqli_query($con, "SELECT * FROM film_publisher");
+$pub = mysqli_num_rows($pq);
+$fq = mysqli_query($con, "SELECT * FROM list_film");
+$film = mysqli_num_rows($fq);
+$rq = mysqli_query($con, "SELECT * FROM membership_role");
+$role = mysqli_num_rows($rq);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,11 +27,14 @@ $user = "SELECT username FROM administrator";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin | Dashboard</title>
     <script src="https://kit.fontawesome.com/4eb31409a6.js" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/4eb31409a6.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../assets/dash-card.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
 </head>
-<body class="bg-dark">
+<body class="bg-dark p-0">
     <nav class="navbar navbar-expand-lg bg-danger">
         <div class="container-fluid">
             <div class="container d-flex align-items-center">
@@ -53,7 +68,7 @@ $user = "SELECT username FROM administrator";
                 </li>
                 <div class="container d-flex align-items-center justify-content-start">
                     <li class="nav-item w-100">
-                        <a href="logout.php" class="btn btn-outline-dark p-1">LOGOUT</a>
+                        <button class="btn btn-outline-dark p-1" onclick="logout()">LOGOUT</button>
                     </li>
                 </div>
             </ul>
@@ -62,12 +77,72 @@ $user = "SELECT username FROM administrator";
     </nav>
     <div class="main w-100 h-100 p-3">
         <div class="greeting">
-            <h2 class="text-white">Selamat Datang<h2>
+            <h2 class="text-white">Welcome, <span><?= $user['username'] ?>!</span><h2>
         </div>
+        <hr style="border: 1.5px solid #555555">
         <div class="main-content">
-            <a href="../../index.php" target="_blank" class="btn btn-danger">Lihat Website</a>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-xl-3">
+                        <div class="card bg-c-blue order-card">
+                            <div class="card-block">
+                                <h6 class="m-b-20">Membership</h6>
+                                <hr/>
+                                <div class="container d-flex justify-content-between align-items-center">
+                                    <h1><?= $member ?></h1>
+                                    <i class="fa-solid fa-user-group"></i>
+                                </div>
+                                <div class="container mt-2"><a class="text-white text-decoration-none" href="membership.php">Detail <i class="fa-solid fa-arrow-up-right-from-square text-white" style="font-size: 1em;"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xl-3">
+                        <div class="card bg-c-green order-card">
+                            <div class="card-block">
+                                <h6 class="m-b-20">Publisher</h6>
+                                <hr>
+                                <div class="container d-flex justify-content-between align-items-center">
+                                    <h1><?= $pub ?></h1>
+                                    <i class="fa-solid fa-user-group"></i>
+                                </div>
+                                <div class="container mt-2"><a class="text-white text-decoration-none" href="publisher.php">Detail <i class="fa-solid fa-arrow-up-right-from-square text-white" style="font-size: 1em;"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xl-3">
+                        <div class="card bg-c-yellow order-card">
+                            <div class="card-block">
+                                <h6 class="m-b-20">Film</h6>
+                                <hr>
+                                <div class="container d-flex justify-content-between align-items-center">
+                                    <h1><?= $film ?></h1>
+                                    <i class="fa-solid fa-film"></i>
+                                </div>
+                                <div class="container mt-2"><a class="text-white text-decoration-none" href="filmsettings.php">Detail <i class="fa-solid fa-arrow-up-right-from-square text-white" style="font-size: 1em;"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xl-3">
+                        <div class="card bg-c-red order-card">
+                            <div class="card-block">
+                                <h6 class="m-b-20">Role</h6>
+                                <hr>
+                                <div class="container d-flex justify-content-between align-items-center">
+                                    <h1><?= $role ?></h1>
+                                    <i class="fa-solid fa-user-gear"></i>
+                                </div>
+                                <div class="container mt-2"><a class="text-white text-decoration-none" href="role.php">Detail <i class="fa-solid fa-arrow-up-right-from-square text-white" style="font-size: 1em;"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr style="border: 1.5px solid #555555">
+        <div class="container">
+            <a href="../../index.php" target="_blank" class="btn btn-danger">Halaman Utama</a>
         </div>
     </div>
 </body>
-
+<script src="../../config.js"></script>
 </html>

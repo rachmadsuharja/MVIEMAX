@@ -6,6 +6,9 @@ if (!isset($_SESSION['loginMember'])) {
     exit;
 }
 $user = query("SELECT * FROM membership_user");
+$fq = mysqli_query($con, "SELECT * FROM list_film");
+$film = mysqli_num_rows($fq);
+$popFilm = mysqli_query($con, "SELECT * FROM list_film LIMIT 3");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +21,8 @@ $user = query("SELECT * FROM membership_user");
     <script src="https://kit.fontawesome.com/4eb31409a6.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../assets/dash-card.css">
+    <link rel="stylesheet" href="dashboard.css">
 </head>
 <body class="bg-dark">
     <nav class="navbar navbar-expand-lg bg-danger">
@@ -49,11 +54,19 @@ $user = query("SELECT * FROM membership_user");
         </div>
     </nav>
     <div class="main w-100 h-100 p-3">
-        <div class="greeting">
-            <h2 class="text-white">Selamat Datang<h2>
-        </div>
         <div class="main-content">
-            <a href="../../index.php" target="_blank" class="btn btn-danger">Lihat Website</a>
+            <h2 class="d-flex justify-content-center text-white">Film Terpopuler</h2>
+        </div>
+        <hr style="border: 1.5px solid #555555">
+        <div class="container">
+        <div id="all-list">
+            <?php foreach($popFilm as $row) :?>
+                <div class="card-box">
+                    <img class="coverImg" src="../../assets/img/film_cover/<?= $row['cover'] ?>">
+                    <h1><?= $row['judul']?></h1>
+                </div>
+            <?php endforeach;?>
+        </div>
         </div>
     </div>
 </body>

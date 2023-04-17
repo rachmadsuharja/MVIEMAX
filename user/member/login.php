@@ -81,6 +81,19 @@ if (isset($_POST['loginMember'])) {
             white-space: nowrap;
             -webkit-overflow-scrolling: touch;
         }
+        
+        .form-floating>.form-control-plaintext~label::after,
+        .form-floating>.form-control:focus~label::after,
+        .form-floating>.form-control:not(:placeholder-shown)~label::after,
+        .form-floating>.form-select~label::after {
+            position: absolute;
+            inset: 1rem 0.375rem;
+            z-index: -1;
+            height: 1.5em;
+            content: "";
+            background-color: #FFFDD0;
+            border-radius: var(--bs-border-radius);
+        }
     </style>
 </head>
 
@@ -104,9 +117,9 @@ if (isset($_POST['loginMember'])) {
                     <label for="password">Password</label>
                 </div>
                 <button class="w-100 mb-3 btn btn-lg text-dark" name="loginMember" id="submit" type="submit" style="background-color:#FFAC42">Login</button>
-                <a class="d-flex justify-content-center mb-3 p-1 w-25 btn btn-secondary" href="password/srcEmail.php">Lupa Password?</a>
+                <a class="d-flex justify-content-center mb-3 p-1 w-25 btn btn-dark" href="password/srcEmail.php">Lupa Password?</a>
                 <div class="container mt-3 mb-5 p-0">
-                <p class="text-white">Belum punya akun? <a class="mt-2 mb-2 p-1 btn btn-secondary" href="../../membership/register.php">buat akun</a></p>
+                <p class="text-white">Belum punya akun? <a class="mt-2 mb-2 p-1 btn btn-dark" href="../../membership/register.php">buat akun</a></p>
                 </div>
             </form>
         </main>

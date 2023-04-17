@@ -45,7 +45,7 @@
                 </li>
                 <div class="container d-flex align-items-center justify-content-start">
                     <li class="nav-item w-100">
-                        <a href="logout.php" class="btn btn-outline-dark p-1">LOGOUT</a>
+                        <button class="btn btn-outline-dark p-1" onclick="logout()">LOGOUT</button>
                     </li>
                 </div>
             </ul>
@@ -69,14 +69,14 @@
                 </div>
                 <input type="text" id="searchInput" onkeyup="searchFeedback()" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
             </div>
-            <a class="btn btn-primary p-1 m-2" href="feedbackSettings/tambah.php"><i class="fa-solid fa-circle-plus"></i> Tambah</a>
+            <p class="fw-bold text-white bg-primary p-1 mt-2 rounded">Jumlah : <?= mysqli_num_rows($feedback) ?></p>
         </div>
         <table id="feedbackList" class="table table-dark" style="color: #dddd;">
             <thead>
-                <th class="bg-secondary text-white" scope="col">Feedback Settings</th>
+                <th class="bg-secondary text-white" width="190" scope="col">Feedback Settings</th>
                 <th class="bg-secondary text-white" scope="col">Nama</th>
                 <th class="bg-secondary text-white" scope="col">Email</th>
-                <th class="bg-secondary text-white" scope="col">Feedback</th>
+                <th class="bg-secondary text-white w-50" scope="col">Feedback</th>
             </thead>
             <?php foreach ($feedback as $row) : ?>
             <tr>
@@ -92,6 +92,7 @@
         </table>
     </div>
 </body>
+<script src="../../config.js"></script>
 <script>
     function searchFeedback() {
     // Declare variables

@@ -17,20 +17,24 @@ if (!isset($_SESSION['loginAdmin'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </head>
 <style>
-    ul li {
+    li {
         list-style: none;
     }
+    .form-label {
+        font-weight: 500;
+        color: #dfdfdf;
+    }
+    .form-control, .form-control:focus {
+        background-color: #FFFDD0;
+    }
+
 </style>
-<body>
-<div class="container">
-    <a href="../role.php" class="btn btn-success p-1 m-2">Kembali</a>
-</div>
+<body class="bg-dark p-5">
 <div class="container w-100 h-100 p-3 d-flex justify-content-center align-items-center">
-        <div class="container-fluid w-50 p-3">
+        <div class="container-fluid w-50 px-5 py-3 rounded" style="background-color: crimson;">
             <div class="mb-3 d-flex justify-content-center">
-                <h3>Update Role</h3>
+                <h3 style="color: #dfdfdf;">Update Role</h3>
             </div>
-    <div class="container">
     <?php
         $id = $_GET['id'];
         $role = query("SELECT * FROM membership_role WHERE id = $id");
@@ -58,7 +62,6 @@ if (!isset($_SESSION['loginAdmin'])) {
                 <div class="mb-3">
                     <label for="fitur" class="form-label">Fitur</label>
                     <div class="form-control">
-                        <ul>
                             <li>
                                 <input type="checkbox" name="fitur[0]" value="4K Quality" <?php if(in_array("4K Quality", $fiturChecked)){?>  checked='checked' <?php }?> id="hdquality">
                                 <label for="hdquality">4K Quality</label>
@@ -71,20 +74,24 @@ if (!isset($_SESSION['loginAdmin'])) {
                                 <input type="checkbox" name="fitur[2]" value="Badge" <?php if(in_array("Badge", $fiturChecked)){?>  checked='checked' <?php }?> id="badge">
                                 <label for="badge">Badge Khusus</label>
                             </li>
-                        </ul>
                     </div>
                 </div>
-                <div class="mb-3">
-                    <label for="harga" class="form-label">Harga</label>
-                    <input type="text" name="harga" class="form-control" value="<?= $role['harga'] ?>" placeholder="harga role..." required>
+                <div class="role-container d-flex justify-content-between">
+                    <div class="mb-3">
+                        <label for="harga" class="form-label">Harga</label>
+                        <input type="number" name="harga" class="form-control" value="<?= $role['harga'] ?>" placeholder="harga role..." required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="role_limit" class="form-label">Limit</label>
+                        <div class="form-control">
+                            <input type="range" name="role_limit" class="form-range" id="role_limit" value="<?= $role['role_limit'] ?>" min="1" max="12" oninput="this.nextElementSibling.value = this.value + ' Bulan'">
+                            <output for="role_limit" style="width: 4em; color:#555555"><?= $role['role_limit'] ?> Bulan</output>
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="role_limit" class="form-label">Limit</label>
-                    <input type="range" name="role_limit" class="form-range" id="role_limit" value="<?= $role['role_limit'] ?>" min="1" max="12" oninput="this.nextElementSibling.value = this.value">
-                    <output></output>
-                </div>
-                <div class="mb-3">
-                    <button type="submit" class="form-button btn btn-danger" name="submit">Update</button>
+                <div class="mb-3 d-flex justify-content-between">
+                    <a href="../role.php" class="btn btn-secondary">Kembali</a>
+                    <button type="submit" class="form-button btn btn-success" name="submit">Update</button>
                 </div>
         </form>
     </div>

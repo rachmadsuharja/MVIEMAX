@@ -1,0 +1,74 @@
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    80% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.main a:hover {
+    box-shadow: 0px 3px 5px rgb(202, 0, 0), 0px -3px 5px rgb(153, 0, 0);
+    color: red;
+}
+
+.main a i {
+    font-size: medium;
+}
+
+#all-list {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.card-box {
+    width: 16em;
+    height: 20em;
+    display: grid;
+    place-items: center;
+    margin: .5em;
+    border-radius: .5em;
+    border: 0;
+    background-color: rgba(239, 0, 0, 0.726);
+}
+
+.card-box a {
+    text-decoration: none;
+}
+
+.card-box:hover {
+    background-color: rgb(0, 0, 0);
+    transition: .5s;
+}
+
+.card-box:hover h1 {
+    color: aqua;
+    transition: .5s;
+}
+
+.card-box:hover img {
+    transform: scale(1.25);
+    transition: .5s;
+    opacity: 1;
+}
+
+.card-box .coverImg {
+    width: 10em;
+    height: 14em;
+    opacity: .8;
+    border: 0;
+    border-radius: .5em;
+}
+
+.card-box h1 {
+    color: rgb(255, 157, 157);
+    font-size: 1em;
+}
