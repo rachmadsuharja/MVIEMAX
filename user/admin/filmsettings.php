@@ -64,6 +64,30 @@ if (!isset($_SESSION['loginAdmin'])) {
         </div>
     </nav>
     <div class="container">
+        <?php
+        if (isset($_GET['id'])) {
+            ?>
+            <script>
+                Swal.fire({
+                    title: 'Hapus?',
+                    text: "Data tidak dapat dikembalikan!",
+                    icon: 'warning',
+                    background: '#333',
+                    color: 'white',
+                    backdrop: 'rgba(0, 0, 0, .8)',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Hapus'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "deleteFilm.php?id=<?= $_GET['id'] ?>";
+                }
+                })
+            </script>
+            <?php
+        }
+        ?>
         <div class="input-group mb-3 mt-3 w-25">
             <div class="input-group-prepend">
                 <span class="input-group-text bg-secondary text-white" id="inputGroup-sizing-default">Cari</span>
@@ -83,7 +107,7 @@ if (!isset($_SESSION['loginAdmin'])) {
                 <tr>
                     <th>
                         <div class="editBtn">
-                            <a class="btn btn-outline-danger" href="deleteFilm.php?id=<?= $row['id'] ?>" onclick="return confirm('Yakin?')"><i class="fa-solid fa-trash"></i> Hapus</a>
+                            <a class="btn btn-outline-danger" href="?id=<?= $row['id'] ?>"><i class="fa-solid fa-trash"></i> Hapus</a>
                         </div>
                     </th>
                     <td><?= $row['judul'] ?></td>

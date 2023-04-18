@@ -12,7 +12,9 @@ if (!isset($_SESSION['loginPublisher'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Publisher | Film</title>
-    <script src="https://kit.fontawesome.com/4eb31409a6.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
     <script src="https://kit.fontawesome.com/4eb31409a6.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
@@ -39,7 +41,7 @@ if (!isset($_SESSION['loginPublisher'])) {
                 </li>
                 <div class="container d-flex align-items-center justify-content-start">
                     <li class="nav-item w-100">
-                        <a href="logout.php" class="btn btn-outline-dark p-1">LOGOUT</a>
+                        <button class="btn btn-outline-dark p-1" onclick="logout()">LOGOUT</button>
                     </li>
                 </div>
             </ul>
@@ -50,6 +52,28 @@ if (!isset($_SESSION['loginPublisher'])) {
         <?php
         require_once "../../config.php";
         $film = mysqli_query($con, "SELECT * FROM list_film");
+        if (isset($_GET['id'])) {
+            ?>
+            <script>
+                Swal.fire({
+                    title: 'Hapus?',
+                    text: "Data tidak dapat dikembalikan!",
+                    icon: 'warning',
+                    background: '#333',
+                    color: 'white',
+                    backdrop: 'rgba(0, 0, 0, .8)',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Hapus'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "deleteFilm.php?id=<?= $_GET['id'] ?>";
+                }
+                })
+            </script>
+            <?php
+        }
         ?>
         <div class="tbHead w-100 d-flex justify-content-around align-items-center">
             <div class="input-group mb-3 mt-3 w-25">
@@ -72,8 +96,8 @@ if (!isset($_SESSION['loginPublisher'])) {
             <?php foreach($film as $row): ?>
                         <tr>
                             <th class="w-25">
-                                <a class="btn btn-outline-primary p-1" href="update.php?id=<?= $row['id'] ?>">Edit</a>
-                                <a class="btn btn-outline-danger" href="deleteFilm.php?id=<?= $row['id'] ?>" onclick="return confirm('Yakin?')">Hapus</a>
+                                <a class="btn btn-outline-primary" href="update.php?id=<?= $row['id'] ?>"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                                <a class="btn btn-outline-danger" href="?id=<?= $row['id'] ?>"><i class="fa-solid fa-trash"></i> Hapus</a>
                             </th>
                             <td><?= $row['judul'] ?></td>
                             <td><?= $row['tgl_rilis'] ?></td>
@@ -81,10 +105,12 @@ if (!isset($_SESSION['loginPublisher'])) {
                             <td><?= "<img src='../../assets/img/film_cover/$row[cover]' style='width:7em;height:10em;'>" ?></td> 
                             <td style="width:20em"><?= $row['film_desc'] ?></td>
                         </tr>
-                    <?php endforeach;?>
+            <?php endforeach;?>
+            
         </table>
     </div>
 </body>
+<script src="../../config.js"></script>
 <script>
     function searchFilm() {
     // Declare variables  

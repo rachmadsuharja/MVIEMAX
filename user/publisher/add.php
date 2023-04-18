@@ -13,6 +13,9 @@ if (!isset($_SESSION['loginPublisher'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Publisher | Tambah Film</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
     <script src="https://kit.fontawesome.com/4eb31409a6.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
@@ -41,10 +44,22 @@ if (!isset($_SESSION['loginPublisher'])) {
             if (add($_POST) > 0) {
                 ?>
                 <script>
-                    alert('berhasil');
-                    window.location.href = "film.php";
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil',
+                        background: '#333',
+                        backdrop: 'rgba(0, 0, 0, .8)',
+                        color: 'white',
+                        text: 'Berhasil menambahkan film',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    setTimeout(function() {
+                        window.location.href = "film.php";
+                    }, 1450);
                 </script>
                 <?php
+                exit;
             }
         }
         ?>
@@ -116,6 +131,7 @@ if (!isset($_SESSION['loginPublisher'])) {
         </div>
     </div>
 </body>
+<script src="../../config.js"></script>
 <script>
     let clearBtn = document.querySelector(".clear-btn");
     clearBtn.addEventListener("click", () => {

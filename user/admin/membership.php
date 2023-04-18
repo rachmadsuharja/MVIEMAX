@@ -64,6 +64,28 @@ if (!isset($_SESSION['loginAdmin'])) {
     <div class="container">
         <?php
         $member = mysqli_query($con, "SELECT * FROM membership_user");
+        if (isset($_GET['id'])) {
+            ?>
+            <script>
+                Swal.fire({
+                    title: 'Hapus?',
+                    text: "Data tidak dapat dikembalikan!",
+                    icon: 'warning',
+                    background: '#333',
+                    color: 'white',
+                    backdrop: 'rgba(0, 0, 0, .8)',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Hapus'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "memberSettings/delete.php?id=<?= $_GET['id'] ?>";
+                }
+                })
+            </script>
+            <?php
+        }
         ?>
         <div class="tbHead w-100 d-flex justify-content-around align-items-center">
             <div class="input-group mb-3 mt-3 w-25">
@@ -72,7 +94,7 @@ if (!isset($_SESSION['loginAdmin'])) {
                 </div>
                 <input type="text" id="searchInput" onkeyup="searchMember()" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
             </div>
-            <a class="btn btn-success p-1 m-2" href="memberSettings/tambah.php"><i class="fa-solid fa-circle-plus"></i> Tambah</a>
+            <a class="btn btn-primary p-1 m-2" href="memberSettings/tambah.php"><i class="fa-solid fa-circle-plus"></i> Tambah</a>
         </div>
         <table id="memberList" class="table table-dark" style="color: #dddd;">
             <thead>
@@ -85,8 +107,8 @@ if (!isset($_SESSION['loginAdmin'])) {
             <?php foreach ($member as $row) : ?>
             <tr>
                 <th>
-                    <a class="btn btn-outline-primary p-1" href="memberSettings/update.php?id=<?= $row['id'] ?>">Edit</a>
-                    <a class="btn btn-outline-danger p-1" href="memberSettings/delete.php?id=<?= $row['id'] ?>" onclick="return confirm('Yakin')">Hapus</a>
+                    <a class="btn btn-outline-primary p-1" href="memberSettings/update.php?id=<?= $row['id'] ?>"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                    <a class="btn btn-outline-danger p-1" href="?id=<?= $row['id'] ?>"><i class="fa-solid fa-trash"></i> Hapus</a>
                 </th>
                 <td><?= $row['nama']?></td>
                 <td><?= $row['gender']?></td>

@@ -1,17 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hapus</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <style>
+        * {
+            font-family: sans-serif;
+        }
+        body {
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
 <?php
-require "../../config.php";
-$id = $_GET["id"];
+require_once "../../config.php";
 session_start();
 if (!isset($_SESSION['loginPublisher'])) {
-    header("Location: login.php");
+    header("Location: ../login.php");
     exit;
 }
+$id = $_GET["id"];
 if (delete($id) > 0 ) {
     ?>
-            <script>
-                window.location.href = 'film.php';
-            </script>
-        <?php
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                background: '#333',
+                backdrop: 'rgba(0, 0, 0, .8)',
+                color: 'white',
+                text: 'Berhasil menghapus data',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            setTimeout(function() {
+                window.location.href = "film.php";
+            }, 1450);
+        </script>
+    <?php
 } else {
-    die('error');
+        mysqli_error($con);
 }
+?>
+</body>
+</html>

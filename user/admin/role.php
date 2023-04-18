@@ -62,6 +62,28 @@
             header("Location: login.php");
             exit;
         }
+        if (isset($_GET['id'])) {
+            ?>
+            <script>
+                Swal.fire({
+                    title: 'Hapus?',
+                    text: "Data tidak dapat dikembalikan!",
+                    icon: 'warning',
+                    background: '#333',
+                    color: 'white',
+                    backdrop: 'rgba(0, 0, 0, .8)',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Hapus'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "roleSettings/delete.php?id=<?= $_GET['id'] ?>";
+                }
+                })
+            </script>
+            <?php
+        }
     ?>
         <div class="tbHead w-100 d-flex justify-content-around align-items-center">
             <div class="input-group mb-3 mt-3 w-25">
@@ -83,8 +105,8 @@
             <?php foreach ($role as $row) : ?>
             <tr>
                 <th>
-                    <a class="btn btn-outline-primary p-1" href="roleSettings/update.php?id=<?= $row['id'] ?>">Edit</a>
-                    <a class="btn btn-outline-danger p-1" href="roleSettings/delete.php?id=<?= $row['id'] ?>" onclick="return confirm('Yakin?')">Hapus</a>
+                    <a class="btn btn-outline-primary p-1" href="roleSettings/update.php?id=<?= $row['id'] ?>"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                    <a class="btn btn-outline-danger p-1" href="?id=<?= $row['id'] ?>"><i class="fa-solid fa-trash"></i> Hapus</a>
                 </th>
                 <td><?= $row['nama']?></td>
                 <td><?= $row['fitur']?></td>

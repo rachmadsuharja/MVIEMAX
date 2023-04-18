@@ -120,9 +120,9 @@ if (isset($_POST['loginPublisher'])) {
                     <label for="password">Password</label>
                 </div>
                 <button class="w-100 mb-3 btn btn-lg text-dark" name="loginPublisher" id="submit" type="submit" style="background-color:#FFAC42">Login</button>
-                <a class="d-flex justify-content-center mb-3 w-25 p-2 btn btn-dark" href="password/srcUser.php">Lupa Password?</a>
+                <a class="d-flex justify-content-center mb-3 w-25 p-1 btn btn-dark" href="password/srcUser.php">Lupa Password?</a>
                 <div class="container mt-3 mb-5 p-0">
-                <p class="text-white">Belum punya akun? <a class="mt-2 mb-2 p-2 btn btn-dark" href="../../publisher/register.php">buat akun</a></p>
+                <p class="text-white">Belum punya akun? <a class="mt-2 mb-2 p-1 btn btn-dark" href="../../publisher/register.php">buat akun</a></p>
                 </div>
             </form>
         </main>

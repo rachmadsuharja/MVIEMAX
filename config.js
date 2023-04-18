@@ -12,6 +12,6 @@ function logout() {
     }).then((result) => {
         if (result.isConfirmed) {
             window.location.assign("logout.php");
-        };
+        }
     });
-};
+}
